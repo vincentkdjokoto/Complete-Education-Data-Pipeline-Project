@@ -16,3 +16,17 @@ This project demonstrates:
 5. **Visualization**: Interactive dashboard for data exploration
 
 ## 🏗️ Architecture
+
+
+## 🚀 Quick Start
+
+### **Option 1: Docker (Recommended)**
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/education-data-pipeline.git
+cd education-data-pipeline
+
+# Build and run with Docker Compose
+docker-compose up --build
+
+# Access the dashboard at http://localhost:8501
