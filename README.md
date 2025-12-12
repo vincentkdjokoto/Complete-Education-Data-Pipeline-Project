@@ -30,3 +30,27 @@ cd education-data-pipeline
 docker-compose up --build
 
 # Access the dashboard at http://localhost:8501
+
+🔧 Configuration
+Edit config.yaml to customize:
+
+Data sources and endpoints
+
+Database schema and table names
+
+Extraction parameters
+
+Dashboard settings
+
+📈 Dashboard Features
+Interactive charts with Plotly
+
+Country comparison tools
+
+Time series analysis
+
+Performance metrics
+
+Export capabilities
+
+
