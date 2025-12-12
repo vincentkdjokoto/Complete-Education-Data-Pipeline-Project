@@ -1,0 +1,16 @@
+-- Get latest enrollment rates by country
+SELECT country_name, enrollment_rate 
+FROM enrollment_data 
+WHERE year = 2022 
+ORDER BY enrollment_rate DESC;
+
+-- Compare graduation rates over time
+SELECT year, country_name, AVG(graduation_rate) as avg_rate
+FROM graduation_data 
+GROUP BY year, country_name;
+
+-- Find education spending trends
+SELECT year, SUM(spending_usd) as total_spending
+FROM education_spending 
+GROUP BY year 
+ORDER BY year;
