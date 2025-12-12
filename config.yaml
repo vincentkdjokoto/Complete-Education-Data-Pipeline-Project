@@ -1,0 +1,31 @@
+# OECD Education Statistics Data Pipeline Configuration
+data_sources:
+  oecd_stats:
+    url: "https://stats.oecd.org/SDMX-JSON/data/"
+    datasets:
+      - "EDU_ENRL"  # Enrollment rates
+      - "EDU_GRAD"  # Graduation rates
+      - "EDU_FIN"   # Education financing
+  
+  world_bank:
+    url: "https://api.worldbank.org/v2/country/all/indicator/"
+    indicators:
+      - "SE.PRM.ENRR"  # Primary enrollment
+      - "SE.SEC.ENRR"  # Secondary enrollment
+  
+  # US Department of Education (example)
+  us_ed_gov:
+    url: "https://data.ed.gov/api/views/"
+  
+database:
+  sqlite_path: "database/education.db"
+  tables:
+    enrollment: "enrollment_data"
+    graduation: "graduation_data"
+    spending: "education_spending"
+    countries: "country_metadata"
+
+pipeline:
+  extraction_timeout: 30
+  retry_attempts: 3
+  chunk_size: 1000
