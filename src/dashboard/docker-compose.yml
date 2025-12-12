@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  education-pipeline:
+    build: .
+    container_name: education-data-pipeline
+    ports:
+      - "8501:8501"  # Streamlit dashboard
+    volumes:
+      - ./data:/app/data  # Persistent data storage
+      - ./database:/app/database  # Persistent database
+    environment:
+      - PYTHONPATH=/app
+      - TZ=UTC
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sqlite3; conn = sqlite3.connect('/app/database/education.db'); conn.close()"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Optional: Add a cron service for scheduled updates
+  scheduler:
+    image: alpine:latest
+    container_name: education-scheduler
+    command: >
+      sh -c "echo '0 2 * * * curl -X POST http://education-pipeline:8501/_stcore/health' > /etc/crontabs/root && crond -f"
+    depends_on:
+      - education-pipeline
+    restart: unless-stopped
